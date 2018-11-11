@@ -1,9 +1,11 @@
 # swift 4.2 代码规范
 
-##正确性
+## 正确性
+
 努力使代码编译时没有警告。这条规则从根本禁止了一些文法使用，如推荐使用#selector文而不是用字符串
 
-##命名
+## 命名
+
 描述性和一致性的命名能使代码更容易阅读和理解，可以参考[API Design Guidelines](https://swift.org/documentation/api-design-guidelines/) 命名规范, 一些重要点如下：
 
 * 力求清晰
@@ -33,7 +35,8 @@
 * 标注闭包和元组
 * 利用好默认参数值
 
-###单调
+### 单调
+
 引用的方法名没有歧义是最重要的，尽可能保持简单
 
 * 方法名没有参数， 你调用 ‘addTarget’
@@ -41,7 +44,8 @@
 * 方法名有参数标注和类型，你调用 ‘addTarget(_: Any?, action: Selector?)’
 
 
-###类前缀
+### 类前缀
+
 Swift中类别(类，结构体)在编译时会把模块设置为默认的命名空间，所以不用为了区分类别而添加前缀，比如RW。如果担心来自不同模块的两个名称发生冲突，可以在使用时添加模块名称来区分，注意不要滥用模块名称，仅在有可能发生冲突或疑惑的场景下使用。
 
 ```
@@ -51,6 +55,7 @@ let myClass = MyModule.UsefulClass()
 ```
 
 ### 委托-delegate
+
 当创建自定义委托方法时，第一个未命名参数应该是委托数据源。（UIKit里面有很多例子）
 
 **推荐**
@@ -67,7 +72,8 @@ func didSelectName(namePicker: NamePickerViewController, name: String)
 func namePickerShouldReload() -> Bool
 ```
 
-###类型推导
+### 类型推导
+
 利用编译器类型推导去写短小，清晰的代码
 
 **推荐**
@@ -88,7 +94,8 @@ let toView = context.view(forKey: UITransitionContextViewKey.to)
 let view = UIView(frame: CGRect.zero)
 ```
 
-###泛型
+### 泛型
+
 泛型类型参数应具有可以描述的，遵守“大驼峰命名”法则，当类型名没有一个明确含义的时候，用传统大小字母，如 T，U或者V
 
 **推荐**
@@ -106,7 +113,8 @@ func write<target: OutputStream>(to target: inout target)
 func swap<Thing>(_ a: inout Thing, _ b: inout Thing)
 ```
 
-###语言
+### 语言
+
 尽量美式英语拼写定义api并且apple api保持一致
 
 **推荐**
@@ -121,10 +129,12 @@ let color = "red"
 let colour = "red"
 ```
 
-##代码组织结构
+## 代码组织结构
+
 利用扩展去组织逻辑代码块，每个扩展必须以 `//MARK:-`加上注释
 
-###协议一致性
+### 协议一致性
+
 尤其，当添加一个协议给模型时，推荐添加一个扩展给协议方法，这样保证相关代码集中在一起，从而简化给类型添加协议
 
 **推荐**
@@ -155,7 +165,8 @@ class MyViewController: UIViewController, UITableViewDataSource, UIScrollViewDel
 
 对于UIkit viewController，利用扩展对声明周期、自定义存取器和IBAction进行分组
 
-###无用代码
+### 无用代码
+
 无用的代码，包括Xcode生成模板代码和占位符应该被删除，除非辅导性说明引导用户去使用注释的代码，
 一些方法简单调用父类方法也应该删除。
 
@@ -186,7 +197,8 @@ return Database.contacts.count
 }
 ```
 
-###最小化导入
+### 最小化导入
+
 只导入源文件需要module， 例如Foundationg够用情况下不需要导入UIKit
 
 **推荐**
@@ -216,7 +228,7 @@ import UIKit
 var deviceModels: [String]
 ```
 
-###间隔
+### 间隔
 
 * 缩进2个空格而不是用tab进行空格占用并且阻止自动换行，可以在XCode偏好设置中TextEditing设置
 * 方法和其他（`if`/`else`/`switch`/`while` 等）首括号应该与首行语句同一行
@@ -277,7 +289,7 @@ var data :[String:CGFloat] = ["A" : 1.2, "B":3.2]
 
 
 ## 类和结构体
-###使用哪一个
+### 使用哪一个
 结构体是值类型。结构体在使用中没有标识。一个数组包含[a, b, c]和另外一个数组包含[a, b, c]是完全一样的，它们完全可以�互相替换，使用第一个还是使用第二个都一样，因为它们代表的是同一个东西。这就是为什么数组是结构体。
 
 类是引用类型。类使用的场景是需要一个标识或者需要一个特定的生命周期。假设你需要对人�抽象为一个类，因为两个人，是两个不同的东西。即使两个人有同样的名字和生日，也不能确定这两个人是一样的。但是人的生日是一个结构体，因为日期1950/03/03和另外一个日期1950/03/03是相同的,日期是结构体没有唯一标示。
@@ -337,7 +349,7 @@ return "(\(x),\(y))"
 ### self的使用
 从简洁角度来看，应该避免使用self，唯一使用地方 in `@escaping`闭包和构造器里面，其他都可以忽略。
 
-###计算属性
+### 计算属性
 从简洁角度来看，如果只有读，get应该忽略，只有有set语句时候get语句才需要
 
 **推荐**
@@ -359,7 +371,7 @@ return radius * 2
 
 ```
 
-###Final
+### Final
 正常是不需要讲类和成员标记为final，然而有时是值得利用final能说明你的意图。下面例子，box不需要继承，final表达更清晰
 
 ```
@@ -372,7 +384,7 @@ self.value = value
 }
 ```
 
-##函数声明
+## 函数声明
 函数声明要尽可能短且在一行， 行内包括头括号
 
 ```
@@ -414,7 +426,7 @@ func updateConstraints() -> () {
 typealias CompletionHandler = (result) -> ()
 ```
 
-##函数调用
+## 函数调用
 单行函数调用应该写成这样：
 
 ```
@@ -432,7 +444,7 @@ comment: "normalize the display")
 
 ```
 
-##闭包表达式
+## 闭包表达式
 使用尾随闭包仅在闭包表达式在所有参数列表最后一个时，给闭包参数一个可描述性名字
 
 **推荐**
@@ -481,7 +493,7 @@ let value = numbers
 .map {$0 + 10}
 ```
 
-##类型
+## 类型
 尽可能优先使用swift原生类型和表达式，objective-c方法仍可以使用，swift提供到objective-c的桥接功能
 
 **推荐**
@@ -506,7 +518,7 @@ let widthString: NSString = width.stringValue        // NSString
 
 在绘制代码里面，用CGFloat能够减少没有必要转换，让代码更加简洁
 
-###常量
+### 常量
 常量定义用`let`,变量定义用`var`, 如果变量值不变化时用`let`替代`var`
 **提示**： 一个好的技巧是定义任何东西都用`let`， 只有在编译器警告的时候用`var`
 
@@ -532,10 +544,10 @@ let root2 = 1.41421356237309504880168872
 let hypotenuse = side * root2 // what is root2?
 ```
 
-###静态方法和变量类型属性
+### 静态方法和变量类型属性
 静态方法和类别属性的工作原理类似于全局方法和全局属性，应该克制使用，它们的使用场景在于如果某些功能局限于特别的类型或和Objective-C 互相调用
 
-###可选类型
+### 可选类型
 可以变量和函数返回值声明为可选类型(?)，如果nil值可以接受。
 
 当你确认实例变量会稍晚在使用前初始化，可以在声明时使用!来隐式的拆包类型，比如在viewDidLoad中会初始化的子视图。当你访问一个可选类型值时，如果只需要访问一次或者在可选值链中有多个可选类型值时，请使用可选类型值链：
@@ -586,7 +598,7 @@ self.alpha = 1.0
 
 
 
-##控制流
+## 控制流
 循环控制最好使用for-in，而不是用while循环
 
 **推荐**
@@ -626,7 +638,7 @@ print("\(person) is at position #\(i)")
 i += 1
 }
 ```
-###三元操作符
+### 三元操作符
 三元操作符使用场景仅在于使代码更清楚更整洁，否则最好不要使用。单个判断条件的时候可以考虑使用三元操作符，多个判断条件的时候，使用if会使代码更加具有可读性，或者将中间结果使用变量存储代替。一般而言，三元操作符最好的使用场景是给一个变量赋值或者选择哪一个值应该被使用的时候。
 
 **推荐**
@@ -644,7 +656,7 @@ result = isHorizontal ? x : y
 ```
 result = a > b ? x = c > d ? c : d : y
 ```
-##黄金路径
+## 黄金路径
 当编写带有条件才执行的代码的时候，左边的代码应该是黄金路径或者说是快乐路径（应该就是需要满足的条件一次写到位）。换句话说，不要写很多if嵌套语句。多个return是可以的。guard就是专门做这件事的。
 
 **推荐**
@@ -714,9 +726,12 @@ fatalError("impossible")
 fatalError("impossible")
 }
 ```
-###错误使用Guard
+### 错误使用Guard
+
 guard在一些场景用于退出当前条件。一般guard应该像return, throw, break, continue, 和fatalError（）。不应该写很多的代码在里面。如果有多个地方需要调用同样的清理代码，可以考虑使用defer代码块去避免同样的清理代码被到处拷贝。
-##分号
+
+## 分号
+
 Swift不需要在每个声明后面写分号，只在一行有多个声明的时候需要加上分号。
 不过最好不要在同一行中用分号分割多个声明
 
@@ -731,8 +746,8 @@ let swift = "not a scripting language"
 ```
 let swift = "not a scripting language";
 ```
-####注意：swift与js是非常不一样的，js删掉分号一般认为是不太安全的
-##圆括号
+#### 注意：swift与js是非常不一样的，js删掉分号一般认为是不太安全的
+## 圆括号
 现在不需要将条件用圆括号括起来，这些括号应该删除掉。
 
 **推荐**
@@ -755,7 +770,8 @@ print("World")
 ```
 let playerMark = (player == current ? "X" : "O")
 ```
-##多行字符串
+## 多行字符串
+
 当编译一个很长的字符串时，更多的应该使用多行字符串语法。多行符开始行后面不要跟任何文本，文本应该另起一行开始，并且文本应该缩进。
 
 **推荐**
@@ -790,11 +806,12 @@ let message = "You cannot charge the flux " +
 "which costs 10 credits. You currently " +
 "have \(credits) credits available."
 ```
-##不要使用Emoji
+## 不要使用Emoji
+
 在你的工程中不要使用Emoji。在工程中使用这些东西容易造成不必要的摩擦。emoji看上去可能很可爱，但是并没什么卵用。
 
 
-##组织和包名
+## 组织和包名
 
 
 
