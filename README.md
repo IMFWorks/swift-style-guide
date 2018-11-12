@@ -2,19 +2,19 @@
 
 ## 正确性
 
-努力使代码编译时没有警告。这条规则从根本禁止了一些文法使用，如推荐使用#selector文而不是用字符串
+力求使代码编译时没有警告。这条规则从根本禁止了一些文法使用，如推荐使用#selector文而不是用字符串
 
 ## 命名
 
 描述性和一致性的命名能使代码更容易阅读和理解，可以参考[API Design Guidelines](https://swift.org/documentation/api-design-guidelines/) 命名规范, 一些重要点如下：
 
-* 力求清晰
-* 清晰比简洁更重要
+* 调用时力求清晰
+* 清晰优于简洁
 * 使用驼峰
 * 对于类型（包括协议）首字母大写，其他小写
-* 省略不需要的单词
+* 包含必要单词省略不需要的单词
 * 利用变量、参数和关联类型的角色命名，而非类型
-* 为弱类型（any, anyObject和NSObject）添加信息，使其更加明确
+* 为弱类型（any, anyObject和NSObject）添加信息，使其表达更加明确
 * 力求流畅
 * 工厂的方法开头用make
 * 根据方法具体行为为其命名
@@ -27,11 +27,11 @@
 * 避免缩写
 * 遵从先例
 * 方法和属性比自由函数更好
-* 首字母缩写遵循要都都是大写或者小写
-* 同一个意思的方法共享一个一个基础方法名
+* 首字母缩写遵循要都是大写或者小写
+* 同一个含义的方法共享一个基础方法名
 * 避免返回值重载
-* 选择一个好的参数名称，启到文档作用
-* 命名第一个参数比放在函数名中更好，但是delegate除外
+* 取一个好的参数名称，启到文档作用
+* 命名第一个参数比放在函数名中更好，delegate除外
 * 标注闭包和元组
 * 利用好默认参数值
 
@@ -107,6 +107,7 @@ func swap<T>(_ a: inout T, _ b: inout T)
 ```
 
 **不推荐**
+
 ```
 struct Stack<T> { ... }
 func write<target: OutputStream>(to target: inout target)
@@ -115,7 +116,7 @@ func swap<Thing>(_ a: inout Thing, _ b: inout Thing)
 
 ### 语言
 
-尽量美式英语拼写定义api并且apple api保持一致
+尽量美式英语拼写并且Apple's API保持一致
 
 **推荐**
 
@@ -135,7 +136,7 @@ let colour = "red"
 
 ### 协议一致性
 
-尤其，当添加一个协议给模型时，推荐添加一个扩展给协议方法，这样保证相关代码集中在一起，从而简化给类型添加协议
+尤其当添加一个协议给模型时，推荐添加一个扩展给协议方法，这样保证相关代码集中在一起，从而简化给类型添加协议
 
 **推荐**
 
@@ -199,7 +200,7 @@ return Database.contacts.count
 
 ### 最小化导入
 
-只导入源文件需要module， 例如Foundationg够用情况下不需要导入UIKit
+只导入源文件需要module， 例如Foundation够用情况下不需要导入UIKit，导入UIKit就不需要导入Foundation。
 
 **推荐**
 
@@ -229,10 +230,7 @@ var deviceModels: [String]
 ```
 
 ### 间隔
-
-* 缩进2个空格而不是用tab进行空格占用并且阻止自动换行，可以在XCode偏好设置中TextEditing设置
 * 方法和其他（`if`/`else`/`switch`/`while` 等）首括号应该与首行语句同一行
-
 
 **推荐**
 
@@ -284,17 +282,17 @@ var data :[String:CGFloat] = ["A" : 1.2, "B":3.2]
 
 ## 注释
 当必要的时候，用注释去阐明代码块用途，并且要保持更新或者及时删除
-避免代码中出现代码块，因为代码本身起到文档说明作用，如果注释为了生成文档则是例外
+避免代码中出现注释块，因为代码本身起到文档说明作用，如果注释为了生成文档则是例外
 避免C方式注释（`/* ... */`）,推荐使用`//` 或者 `///`
 
 
 ## 类和结构体
 ### 使用哪一个
-结构体是值类型。结构体在使用中没有标识。一个数组包含[a, b, c]和另外一个数组包含[a, b, c]是完全一样的，它们完全可以�互相替换，使用第一个还是使用第二个都一样，因为它们代表的是同一个东西。这就是为什么数组是结构体。
+结构体是值类型。结构体在使用中没有标识。一个数组包含[a, b, c]和另外一个数组包含[a, b, c]是完全一样的，它们完全可以互相替换，使用第一个还是使用第二个都一样，因为它们代表的是同一个东西。这就是为什么数组是结构体。
 
-类是引用类型。类使用的场景是需要一个标识或者需要一个特定的生命周期。假设你需要对人�抽象为一个类，因为两个人，是两个不同的东西。即使两个人有同样的名字和生日，也不能确定这两个人是一样的。但是人的生日是一个结构体，因为日期1950/03/03和另外一个日期1950/03/03是相同的,日期是结构体没有唯一标示。
+类是引用类型。类使用的场景是需要一个标识或者需要一个特定的生命周期。假设你需要对人抽象为一个类，因为两个人，是两个不同的东西。即使两个人有同样的名字和生日，也不能确定这两个人是一样的。但是人的生日是一个结构体，因为日期1950/03/03和另外一个日期1950/03/03是相同的,日期是结构体没有唯一标示。
 
-有时，一些事物应该定义为结构体，但是还需要兼容AnyObject或者已经在以前的历史版本中定义为类（NSDate，NSSet），所以尽可能的注意�类和结构体之间的区别。
+有时，一些事物应该定义为结构体，但是还需要兼容AnyObject或者已经在以前的历史版本中定义为类（NSDate，NSSet），所以尽可能的注意类和结构体之间的区别。
 
 ### 类定义
 一个良好设计类的定义：
@@ -347,10 +345,11 @@ return "(\(x),\(y))"
 * 通过private修饰符隐藏不共享实现，例如centerString。
 
 ### self的使用
+
 从简洁角度来看，应该避免使用self，唯一使用地方 in `@escaping`闭包和构造器里面，其他都可以忽略。
 
 ### 计算属性
-从简洁角度来看，如果只有读，get应该忽略，只有有set语句时候get语句才需要
+从简洁角度来看，如果只有读，get应该忽略，只有set语句时候get语句才需要
 
 **推荐**
 
@@ -372,7 +371,7 @@ return radius * 2
 ```
 
 ### Final
-正常是不需要讲类和成员标记为final，然而有时是值得利用final能说明你的意图。下面例子，box不需要继承，final表达更清晰
+正常是不需要将类和成员标记为final，然而有时是值得利用final能说明你的意图。下面例子，box不需要继承，final表达更清晰
 
 ```
 // Turn any generic type into a reference type using this Box class.
@@ -448,6 +447,7 @@ comment: "normalize the display")
 使用尾随闭包仅在闭包表达式在所有参数列表最后一个时，给闭包参数一个可描述性名字
 
 **推荐**
+
 ```
 UIView.animate(withDuration: 1.0) {
 self.myView.alpha = 0
@@ -503,7 +503,7 @@ let width = 120.0                                    // Double
 let widthString = "\(width)"                         // String
 ```
 
-**不强烈推荐**
+**少推荐**
 
 ```
 let width = 120.0                                    // Double
@@ -511,6 +511,7 @@ let widthString = (width as NSNumber).stringValue    // String
 ```
 
 **不推荐**
+
 ```
 let width: NSNumber = 120.0                          // NSNumber
 let widthString: NSString = width.stringValue        // NSString
@@ -520,9 +521,10 @@ let widthString: NSString = width.stringValue        // NSString
 
 ### 常量
 常量定义用`let`,变量定义用`var`, 如果变量值不变化时用`let`替代`var`
+
 **提示**： 一个好的技巧是定义任何东西都用`let`， 只有在编译器警告的时候用`var`
 
-你可以使用类型属性来定义类型常量而不是实例常量，使用`static let` 可以定义类型属性常量。 这样方式定义类别属性整体上优于全局常量，因为更容易区分于实例属性. 比如:
+你可以使用类型属性来定义类型常量而不是实例常量，使用`static let` 可以定义类型属性常量。 这样方式定义类型属性整体上优于全局常量，因为更容易区分于实例属性. 比如:
 
 ```
 enum Math {
@@ -537,6 +539,7 @@ let hypotenuse = side * Math.root2
 用枚举的好处是变量不会被意外初始化，且在一个独立命名空间
 
 **不推荐**
+
 ```
 let e = 2.718281828459045235360287  // pollutes global namespace
 let root2 = 1.41421356237309504880168872
@@ -545,7 +548,7 @@ let hypotenuse = side * root2 // what is root2?
 ```
 
 ### 静态方法和变量类型属性
-静态方法和类别属性的工作原理类似于全局方法和全局属性，应该克制使用，它们的使用场景在于如果某些功能局限于特别的类型或和Objective-C 互相调用
+静态方法和类型属性的工作原理类似于全局方法和全局属性，应该克制使用，它们的使用场景在于如果某些功能局限于特别的类型或和Objective-C 互相调用
 
 ### 可选类型
 可以变量和函数返回值声明为可选类型(?)，如果nil值可以接受。
@@ -555,7 +558,6 @@ let hypotenuse = side * root2 // what is root2?
 ```
 textContainer?.textLabel?.setNeedsDisplay()
 ```
-
 当命名可选类型变量，避免使用`optionalString `或者`maybeView `命名，因为在`option-ness`已经在类型声明中。
 在可选值绑定时，直接映射原始的命名比使用诸如unwrappedView 或 actualLabel更好。
 
@@ -596,10 +598,178 @@ self.alpha = 1.0
 }
 ```
 
+### 懒加载
+考虑使用懒加载可以更为细粒度的对对象生命周期的控制，尤其是对`UIViewController`视图的懒加载。你也可以调用`{}()`的闭包或者一个私有的工厂方法。
+如下：
 
+```
+lazy var locationManager = makeLocationManager()
+private func makeLocationManager() -> CLLocationManager {
+let manager = CLLocationManager()
+manager.desiredAccuracy = kCLLocationAccuracyBest
+manager.delegate = self
+manager.requestAlwaysAuthorization()
+return manager
+}
+```
+
+**提示：**
+
+* `[unowned self] `在这里不是必需的，没有创建循环引用。
+* `Location manager`的负作用会弹出对话框要求用户提供权限，这细粒度控制意义所在。
+
+### 类型推断
+推荐紧凑的代码，让编译器推断出每个实例的常量或变量的类型。类型推断也适用于小的非空数组和字典。必要时，指定特定类型，如`CGFloat`或`Int16`。
+
+**推荐**
+
+```
+let message = "Click the button"
+let currentBounds = computeViewBounds()
+var names = ["Mic", "Sam", "Christine"]
+let maximumWidth: CGFloat = 106.5
+```
+
+**不推荐**
+
+```
+let message: String = "Click the button"
+let currentBounds: CGRect = computeViewBounds()
+var names = [String]()
+```
+
+#### 为空数组和字典键入注解
+
+对于空数组和字典，请使用类型注解。（对赋予一个大的、多行文字的数组或者字典，使用类型注解。）
+
+**推荐**
+
+```
+var names: [String] = []
+var lookup: [String: Int] = [:]
+```
+
+**不推荐**
+
+```
+var names = [String]()
+var lookup = [String: Int]()
+```
+
+**注意:**
+遵循规范意味着选择描述性名称更加重要。
+
+### 语法糖
+使用简短类型声明语法，而不是全称语法。
+
+**推荐**
+
+```
+var deviceModels: [String]
+var employees: [Int: String]
+var faxNumber: Int?
+```
+
+**不推荐**
+
+```
+var deviceModels: Array<String>
+var employees: Dictionary<Int, String>
+var faxNumber: Optional<Int>
+```
+
+## 函数 VS 方法
+
+应克制使用没有依附类或类型的自由函数，尽可能优先使用类或类型的方法而不是自由函数，这样有助于代码的可读性和易发现性。
+
+自由函数使用场景是跟任何特定类型或实例无关联。
+
+**推荐**
+
+```
+let sorted = items.mergeSorted()  // 很容易被发现
+rocket.launch()  // 作用于模型
+```
+
+**不推荐**
+
+```
+let sorted = mergeSort(items)  // 更难发现
+launch(&rocket)
+```
+
+**自由函数例外**
+
+```
+let tuples = zip(a, b)  // 天然充当自由函数（对称)
+let value = max(x, y, z)  // 另一个自然函数
+```
+
+## 内存管理
+代码应避免循环引用，分析对象图谱，使用`weak`和`unowned`阻止强引用，另一种选择是使用值类型（`struct`，`enum`）来完全防止循环引用。
+
+### 延长对象的生命周期
+使用`[weak self]`和`guard let self = self else { return }`惯用语法延长对象的生命周期，`[weak self]`更加优于`[unowned self]`，`self`的生命周期会超出闭包。显式延长生命周期更优于可选链。
+
+**推荐**
+
+```
+resource.request().onComplete { [weak self] response in
+guard let self = self else {
+return
+}
+let model = self.updateModel(response)
+self.updateUI(model)
+}
+```
+
+**不推荐**
+
+```
+// 如果在响应返回之前释放self，则可能会崩溃
+resource.request().onComplete { [unowned self] response in
+let model = self.updateModel(response)
+self.updateUI(model)
+}
+```
+
+**不推荐**
+
+```
+// 在更新模型和更新UI之间可能会发生deallocate
+resource.request().onComplete { [weak self] response in
+let model = self?.updateModel(response)
+self?.updateUI(model)
+}
+```
+
+## 访问控制
+
+教程中的完全访问控制注释会分散主题，并不是必需的。适当地使用`private`和`fileprivate`会增加清晰度并提升封装，`private`优于`fileprivate`，除非在编译需要的时候才使用`fileprivate`。
+
+只有在完全需要访问控制规范时才显式使用`open`，`public`和`internal`。
+访问控制符一般放在属性修饰符的最前面， 例外`static`修饰符 ,`@IBAction`, `@IBOutlet`和`@discardableResult`。
+
+**推荐**
+
+```
+private let message = "Great Scott!"
+class TimeMachine {  
+private dynamic lazy var fluxCapacitor = FluxCapacitor()
+}
+```
+
+**不推荐**
+
+```
+fileprivate let message = "Great Scott!"
+class TimeMachine {  
+lazy dynamic private var fluxCapacitor = FluxCapacitor()
+}
+```
 
 ## 控制流
-循环控制最好使用for-in，而不是用while循环
+循环for-in优于while
 
 **推荐**
 
@@ -638,8 +808,9 @@ print("\(person) is at position #\(i)")
 i += 1
 }
 ```
+
 ### 三元操作符
-三元操作符使用场景仅在于使代码更清楚更整洁，否则最好不要使用。单个判断条件的时候可以考虑使用三元操作符，多个判断条件的时候，使用if会使代码更加具有可读性，或者将中间结果使用变量存储代替。一般而言，三元操作符最好的使用场景是给一个变量赋值或者选择哪一个值应该被使用的时候。
+三元操作符使用场景仅在于使代码更清楚和整洁。单个判断条件的时候可以考虑使用三元操作符，多个判断条件的时候，使用if会使代码更加具有可读性，或者将中间结果使用变量存储代替。一般而言，三元操作符最好的使用场景是给一个变量赋值或者选择哪一个值应该被使用。
 
 **推荐**
 
@@ -656,14 +827,14 @@ result = isHorizontal ? x : y
 ```
 result = a > b ? x = c > d ? c : d : y
 ```
+
 ## 黄金路径
-当编写带有条件才执行的代码的时候，左边的代码应该是黄金路径或者说是快乐路径（应该就是需要满足的条件一次写到位）。换句话说，不要写很多if嵌套语句。多个return是可以的。guard就是专门做这件事的。
+当编写带有条件才执行的代码的时候，左边的距离是黄金路径，换句话说，不要写很多if嵌套语句，多个return是可以的，guard就为此而生的。
 
 **推荐**
 
 ```
 func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies {
-
 guard let context = context else {
 throw FFTError.noContext
 }
@@ -694,7 +865,8 @@ throw FFTError.noContext
 }
 }
 ```
-当使用guard或者if let去解包多个可选值时，应该尽可能的使用复合判断去减少嵌套。复合判断的时候将guard单独放一行，其他的条件各起一行。else条件应该缩进到与条件判断对齐，像下面所写的这样，例如：
+
+当有多个条件需要用'guard'或'if let'解包，可用复合语句避免嵌套, 如下：
 
 **推荐**
 
@@ -726,14 +898,14 @@ fatalError("impossible")
 fatalError("impossible")
 }
 ```
-### 错误使用Guard
 
-guard在一些场景用于退出当前条件。一般guard应该像return, throw, break, continue, 和fatalError（）。不应该写很多的代码在里面。如果有多个地方需要调用同样的清理代码，可以考虑使用defer代码块去避免同样的清理代码被到处拷贝。
+### Guard失败
+
+guard用于退出场景，如return, throw, break, continue, 和fatalError（）等，避免出现大的代码块， 如果多个退出点有同样的清理代码，使用defer。
 
 ## 分号
 
-Swift不需要在每个声明后面写分号，只在一行有多个声明的时候需要加上分号。
-不过最好不要在同一行中用分号分割多个声明
+Swift不强制每条语句后面有分号，只在一行有多个语句的时候需要，不过不推荐
 
 **推荐**
 
@@ -746,9 +918,10 @@ let swift = "not a scripting language"
 ```
 let swift = "not a scripting language";
 ```
-#### 注意：swift与js是非常不一样的，js删掉分号一般认为是不太安全的
+**注意：**swift与js是非常不一样的，js删掉分号一般认为是不太安全的
+
 ## 圆括号
-现在不需要将条件用圆括号括起来，这些括号应该删除掉。
+条件判断时圆括号不是必须的，建议省略。
 
 **推荐**
 
@@ -765,14 +938,15 @@ if (name == "Hello") {
 print("World")
 }
 ```
-不过，当有很多表达式，圆括号可以使得代码更加可读和清晰,例如：
+不过，当有很多表达式，圆括号可以使得代码读起来更加清晰, 如下：
 
 ```
 let playerMark = (player == current ? "X" : "O")
 ```
-## 多行字符串
 
-当编译一个很长的字符串时，更多的应该使用多行字符串语法。多行符开始行后面不要跟任何文本，文本应该另起一行开始，并且文本应该缩进。
+## 多行字符串常量
+
+当编译一个很长的字符串时，更多的应该使用多行字符串常量，开始处不包含文本，后续文本保持同样缩进。
 
 **推荐**
 
@@ -808,28 +982,34 @@ let message = "You cannot charge the flux " +
 ```
 ## 不要使用Emoji
 
-在你的工程中不要使用Emoji。在工程中使用这些东西容易造成不必要的摩擦。emoji看上去可能很可爱，但是并没什么卵用。
+在你的工程中不要使用Emoji，emoji看上去可爱，影响阅读代码的流畅性。
 
 
-## 组织和包名
+## 版权声明
+下面版权声明应该放在每个源文件开头：
 
+```
+/*
+* Copyright (c) 2017 Baidu, Inc. All Rights Reserved.
+*
+*  Licensed under the Apache License, Version 2.0 (the "License");
+*  you may not use this file except in compliance with the License.
+*  You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*  distributed under the License is distributed on an "AS IS" BASIS,
+*  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*  See the License for the specific language governing permissions and
+*  limitations under the License.
+*/
+```
 
+## 引用
 
-参考swift英文代码规范：<https://github.com/raywenderlich/swift-style-guide> `https://github.com/raywenderlich/swift-style-guide`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+* [API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
+* [swift style guide](https://github.com/raywenderlich/swift-style-guide)
 
 
 
