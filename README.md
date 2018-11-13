@@ -96,7 +96,7 @@ let view = UIView(frame: CGRect.zero)
 
 ### 泛型
 
-泛型类型参数应具有可以描述的，遵守“大驼峰命名”法则，当类型名没有一个明确含义的时候，用传统大小字母，如 T，U或者V
+泛型类型参数应具有可以描述的，遵守“大驼峰命名”法则，当类型名没有一个明确含义的时候，用大写字母，如 T，U或者V
 
 **推荐**
 
@@ -136,23 +136,23 @@ let colour = "red"
 
 ### 协议一致性
 
-尤其当添加一个协议给模型时，推荐添加一个扩展给协议方法，这样保证相关代码集中在一起，从而简化给类型添加协议
+尤其当添加一个协议给类型时，推荐添加一个扩展给协议方法，这样保证相关代码集中在一起，从而简化给类型添加协议
 
 **推荐**
 
 ```
 class MyViewController: UIViewController {
-// class stuff here
+	// class stuff here
 }
 
 // MARK: - UITableViewDataSource
 extension MyViewController: UITableViewDataSource {
-// table view data source methods
+	// table view data source methods
 }
 
 // MARK: - UIScrollViewDelegate
 extension MyViewController: UIScrollViewDelegate {
-// scroll view delegate methods
+	// scroll view delegate methods
 }
 ```
 
@@ -160,11 +160,11 @@ extension MyViewController: UIScrollViewDelegate {
 
 ```
 class MyViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate {
-// all methods
+	// all methods
 }
 ```
 
-对于UIkit viewController，利用扩展对声明周期、自定义存取器和IBAction进行分组
+对于UIkit viewController，利用扩展对声明周期、自定义存取器和IBAction进行分组。
 
 ### 无用代码
 
@@ -175,7 +175,7 @@ class MyViewController: UIViewController, UITableViewDataSource, UIScrollViewDel
 
 ```
 override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-return Database.contacts.count
+	return Database.contacts.count
 }
 ```
 
@@ -184,17 +184,17 @@ return Database.contacts.count
 ```
 override func didReceiveMemoryWarning() {
 super.didReceiveMemoryWarning()
-// Dispose of any resources that can be recreated.
+	// Dispose of any resources that can be recreated.
 }
 
 override func numberOfSections(in tableView: UITableView) -> Int {
-// #warning Incomplete implementation, return the number of sections
-return 1
+	// #warning Incomplete implementation, return the number of sections
+	return 1
 }
 
 override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-// #warning Incomplete implementation, return the number of rows
-return Database.contacts.count
+	// #warning Incomplete implementation, return the number of rows
+	return Database.contacts.count
 }
 ```
 
@@ -230,15 +230,15 @@ var deviceModels: [String]
 ```
 
 ### 间隔
-* 方法和其他（`if`/`else`/`switch`/`while` 等）首括号应该与首行语句同一行
+* 方法和其他（`if`/`else`/`switch`/`while` 等）首括号应该与首行语句同一行。
 
 **推荐**
 
 ```
 if user.isHappy {
-// Do something
+	// Do something
 } else {
-// Do something else
+	// Do something else
 }
 ```
 
@@ -247,23 +247,23 @@ if user.isHappy {
 ```
 if user.isHappy
 {
-// Do something
+	// Do something
 }
 else {
-// Do something else
+	// Do something else
 }
 ```
 
-* 方法之间只有一个空行，有助于清晰和组织，当有一个方法有多个段落时意味需要重构成多个函数
-* 在大括号开始和结束之前不需要空行
-* 冒号总是左边没有空格，右边需要保留空格，例外三元操作符、空字典和`#selector`语法 `(_:action:)`
+* 方法之间只有一个空行，有助于清晰和组织，当有一个方法有多个段落时意味需要重构成多个函数。
+* 在大括号开始和结束之前不需要空行。
+* 冒号总是左边没有空格，右边需要保留空格，例外三元操作符、空字典和`#selector`语法 `(_:action:)`。
 
 
 **推荐**
 
 ```
 class TestDatabase: Database {
-var data: [String: CGFloat] = ["A": 1.2, "B": 3.2]
+	var data: [String: CGFloat] = ["A": 1.2, "B": 3.2]
 }
 ```
 
@@ -271,19 +271,17 @@ var data: [String: CGFloat] = ["A": 1.2, "B": 3.2]
 
 ```
 class TestDatabase : Database {
-var data :[String:CGFloat] = ["A" : 1.2, "B":3.2]
+	var data :[String:CGFloat] = ["A" : 1.2, "B":3.2]
 }
 ```
 
-* 一行代码最多70个字符换行
-*  避免行结尾添加空格
-*  每个文件结尾添加一个新行
+* 一行代码最多70个字符换行。
+*  避免行结尾添加空格。
+*  每个文件结尾添加一个新行	。
 
 
 ## 注释
-当必要的时候，用注释去阐明代码块用途，并且要保持更新或者及时删除
-避免代码中出现注释块，因为代码本身起到文档说明作用，如果注释为了生成文档则是例外
-避免C方式注释（`/* ... */`）,推荐使用`//` 或者 `///`
+当必要的时候，用注释去阐明代码块用途，并且要保持更新或者及时删除，避免代码中出现注释块，因为代码本身起到文档说明作用，如果注释为了生成文档则是例外，避免C方式注释（`/* ... */`）,推荐使用`//` 或者 `///`。
 
 
 ## 类和结构体
@@ -299,49 +297,49 @@ var data :[String:CGFloat] = ["A" : 1.2, "B":3.2]
 
 ```
 class Circle: Shape {
-var x: Int, y: Int
-var radius: Double
-var diameter: Double {
-get {
-return radius * 2
-}
-set {
-radius = newValue / 2
-}
-}
+	var x: Int, y: Int
+	var radius: Double
+	var diameter: Double {
+		get {
+			return radius * 2
+		}
+		set {
+			radius = newValue / 2
+		}
+	}
 
-init(x: Int, y: Int, radius: Double) {
-self.x = x
-self.y = y
-self.radius = radius
-}
+	init(x: Int, y: Int, radius: Double) {
+		self.x = x
+		self.y = y
+		self.radius = radius
+	}
 
-convenience init(x: Int, y: Int, diameter: Double) {
-self.init(x: x, y: y, radius: diameter / 2)
-}
+	convenience init(x: Int, y: Int, diameter: Double) {
+		self.init(x: x, y: y, radius: diameter / 2)
+	}
 
-override func area() -> Double {
-return Double.pi * radius * radius
-}
+	override func area() -> Double {
+		return Double.pi * radius * radius
+	}
 }
 
 extension Circle: CustomStringConvertible {
-var description: String {
-return "center = \(centerString) area = \(area())"
-}
-private var centerString: String {
-return "(\(x),\(y))"
-}
+	var description: String {
+		return "center = \(centerString) area = \(area())"
+	}
+	private var centerString: String {
+		return "(\(x),\(y))"
+	}
 }
 ```
 
 上面的例子展示了下面的设计准则：
 
-* 属性，变量，常量和参数等在声明定义时，其中: 符号后有空格，而: 符号前没有空格，比如x: Int, 和Circle: Shape
-* 如果定义多个变量/数据结构时出于相同的目的和上下文，可以定义在同一行。
+* 属性，变量，常量和参数等在声明定义时，其中: 符号后有空格，而: 符号前没有空格，比如x: Int, 和Circle: Shape。
+* 如果定义多个变量和数据结构时出于相同的目的和上下文，可以定义在同一行。
 * 缩进getter，setter的定义和属性观察器的定义。
 * 不需要添加internal这样的默认的修饰符。也不需要在重写一个方法时添加访问修饰符。
-* 在扩展里面扩充额外功能。
+* 在扩展里面添加额外功能。
 * 通过private修饰符隐藏不共享实现，例如centerString。
 
 ### self的使用
@@ -349,13 +347,13 @@ return "(\(x),\(y))"
 从简洁角度来看，应该避免使用self，唯一使用地方 in `@escaping`闭包和构造器里面，其他都可以忽略。
 
 ### 计算属性
-从简洁角度来看，如果只有读，get应该忽略，只有set语句时候get语句才需要
+从简洁角度来看，如果只有读，get应该忽略，只有set语句时候get语句才需要。
 
 **推荐**
 
 ```
 var diameter: Double {
-return radius * 2
+	return radius * 2
 }
 ```
 
@@ -363,32 +361,32 @@ return radius * 2
 
 ```
 var diameter: Double {
-get {
-return radius * 2
-}
+	get {
+		return radius * 2
+	}
 }
 
 ```
 
 ### Final
-正常是不需要将类和成员标记为final，然而有时是值得利用final能说明你的意图。下面例子，box不需要继承，final表达更清晰
+正常是不需要将类和成员标记为final，然而有时是值得利用final能说明你的意图。下面例子，box不需要继承，final表达更清晰。
 
 ```
 // Turn any generic type into a reference type using this Box class.
 final class Box<T> {
-let value: T
-init(_ value: T) {
-self.value = value
-}
+	let value: T
+	init(_ value: T) {
+		self.value = value
+	}
 }
 ```
 
 ## 函数声明
-函数声明要尽可能短且在一行， 行内包括头括号
+函数声明要尽可能短且在一行， 行内包括头括号：
 
 ```
 func reticulateSplines(spline: [Double]) -> Bool {
-// reticulate code goes here
+	// reticulate code goes here
 }
 ```
 
@@ -396,21 +394,21 @@ func reticulateSplines(spline: [Double]) -> Bool {
 
 ```
 func reticulateSplines(
-spline: [Double], 
-adjustmentFactor: Double,
-translateConstant: Int, comment: String
-) -> Bool {
-// reticulate code goes here
-}
+	spline: [Double], 
+	adjustmentFactor: Double,
+	translateConstant: Int, comment: String
+	) -> Bool {
+		// reticulate code goes here
+	}
 ```
 
-不要用`(Void)`做为input参数，用`()`即可，函数输出和闭包可以用`Void`来代替`()`
+不要用`(Void)`做为input参数，用`()`即可，函数输出和闭包可以用`Void`来代替`()`。
 
 **推荐**
 
 ```
 func updateConstraints() -> Void {
-// magic happens here
+	// magic happens here
 }
 
 typealias CompletionHandler = (result) -> Void
@@ -419,7 +417,7 @@ typealias CompletionHandler = (result) -> Void
 
 ```
 func updateConstraints() -> () {
-// magic happens here
+	// magic happens here
 }
 
 typealias CompletionHandler = (result) -> ()
@@ -432,7 +430,7 @@ typealias CompletionHandler = (result) -> ()
 let success = reticulateSplines(splines)
 ```
 
-如果是多行，每个参数一行且同样缩进
+如果是多行，每个参数一行且同样缩进：
 
 ```
 let success = reticulateSplines(
@@ -450,13 +448,13 @@ comment: "normalize the display")
 
 ```
 UIView.animate(withDuration: 1.0) {
-self.myView.alpha = 0
+	self.myView.alpha = 0
 }
 
 UIView.animate(withDuration: 1.0, animations: {
-self.myView.alpha = 0
+	self.myView.alpha = 0
 }, completion: { finished in
-self.myView.removeFromSuperview()
+	self.myView.removeFromSuperview()
 })
 ```
 
@@ -464,13 +462,13 @@ self.myView.removeFromSuperview()
 
 ```
 UIView.animate(withDuration: 1.0, animations: {
-self.myView.alpha = 0
+	self.myView.alpha = 0
 })
 
 UIView.animate(withDuration: 1.0, animations: {
-self.myView.alpha = 0
+	self.myView.alpha = 0
 }) { f in
-self.myView.removeFromSuperview()
+	self.myView.removeFromSuperview()
 }
 ```
 
@@ -478,11 +476,11 @@ self.myView.removeFromSuperview()
 
 ```
 attendeeList.sort { a, b in
-a > b
+	a > b
 }
 ```
 
-链式调用在上下文中使用尾随闭包会更清晰和易读，至于空格，换行和匿名参数不做具体要求
+链式调用在上下文中使用尾随闭包会更清晰和易读，至于空格，换行和匿名参数不做具体要求。
 
 ```
 let value = numbers.map { $0 * 2 }.filter { $0 % 3 == 0 }.index(of: 90)
@@ -494,7 +492,7 @@ let value = numbers
 ```
 
 ## 类型
-尽可能优先使用swift原生类型和表达式，objective-c方法仍可以使用，swift提供到objective-c的桥接功能
+尽可能优先使用swift原生类型和表达式，objective-c方法仍可以使用，swift提供到objective-c的桥接功能。
 
 **推荐**
 
@@ -517,26 +515,26 @@ let width: NSNumber = 120.0                          // NSNumber
 let widthString: NSString = width.stringValue        // NSString
 ```
 
-在绘制代码里面，用CGFloat能够减少没有必要转换，让代码更加简洁
+在绘制代码里面，用CGFloat能够减少没有必要转换，让代码更加简洁。
 
 ### 常量
-常量定义用`let`,变量定义用`var`, 如果变量值不变化时用`let`替代`var`
+常量定义用`let`,变量定义用`var`, 如果变量值不变化时用`let`替代`var`，
 
-**提示**： 一个好的技巧是定义任何东西都用`let`， 只有在编译器警告的时候用`var`
+**提示**： 一个好的技巧是定义任何东西都用`let`， 只有在编译器警告的时候用`var`，
 
 你可以使用类型属性来定义类型常量而不是实例常量，使用`static let` 可以定义类型属性常量。 这样方式定义类型属性整体上优于全局常量，因为更容易区分于实例属性. 比如:
 
 ```
 enum Math {
-static let e = 2.718281828459045235360287
-static let root2 = 1.41421356237309504880168872
+	static let e = 2.718281828459045235360287
+	static let root2 = 1.41421356237309504880168872
 }
 
 let hypotenuse = side * Math.root2
 ```
 
 **提示**
-用枚举的好处是变量不会被意外初始化，且在一个独立命名空间
+用枚举的好处是变量不会被意外初始化，且在一个独立命名空间。
 
 **不推荐**
 
@@ -548,7 +546,7 @@ let hypotenuse = side * root2 // what is root2?
 ```
 
 ### 静态方法和变量类型属性
-静态方法和类型属性的工作原理类似于全局方法和全局属性，应该克制使用，它们的使用场景在于如果某些功能局限于特别的类型或和Objective-C 互相调用
+静态方法和类型属性的类似于全局方法和全局属性，应该克制使用，它们的使用场景在于如果某些功能局限于特别的类型或和Objective-C 互相调用。
 
 ### 可选类型
 可以变量和函数返回值声明为可选类型(?)，如果nil值可以接受。
@@ -558,6 +556,7 @@ let hypotenuse = side * root2 // what is root2?
 ```
 textContainer?.textLabel?.setNeedsDisplay()
 ```
+
 当命名可选类型变量，避免使用`optionalString `或者`maybeView `命名，因为在`option-ness`已经在类型声明中。
 在可选值绑定时，直接映射原始的命名比使用诸如unwrappedView 或 actualLabel更好。
 
@@ -569,13 +568,13 @@ var volume: Double?
 
 // later on...
 if let subview = subview, let volume = volume {
-// do something with unwrapped subview and volume
+	// do something with unwrapped subview and volume
 }
 
 // another example
 UIView.animate(withDuration: 2.0) { [weak self] in
-guard let self = self else { return }
-self.alpha = 1.0
+	guard let self = self else { return }
+	self.alpha = 1.0
 }
 ```
 
@@ -586,37 +585,38 @@ var optionalSubview: UIView?
 var volume: Double?
 
 if let unwrappedSubview = optionalSubview {
-if let realVolume = volume {
-// do something with unwrappedSubview and realVolume
-}
+	if let realVolume = volume {
+		// do something with unwrappedSubview and realVolume
+	}
 }
 
 // another example
 UIView.animate(withDuration: 2.0) { [weak self] in
-guard let self = self else { return }
-self.alpha = 1.0
+	guard let self = self else { return }
+	self.alpha = 1.0
 }
 ```
 
 ### 懒加载
-考虑使用懒加载可以更为细粒度的对对象生命周期的控制，尤其是对`UIViewController`视图的懒加载。你也可以调用`{}()`的闭包或者一个私有的工厂方法。
+考虑使用懒加载可以更为细粒度的控制对象生命周期，尤其是对`UIViewController`视图的懒加载，也可以调用`{}()`的闭包或者一个私有的工厂方法。
 如下：
 
 ```
 lazy var locationManager = makeLocationManager()
-private func makeLocationManager() -> CLLocationManager {
-let manager = CLLocationManager()
-manager.desiredAccuracy = kCLLocationAccuracyBest
-manager.delegate = self
-manager.requestAlwaysAuthorization()
-return manager
+
+lazy var locationManager = makeLocationManager()
+	private func makeLocationManager() -> CLLocationManager {
+	let manager = CLLocationManager()
+	manager.desiredAccuracy = kCLLocationAccuracyBest
+	manager.delegate = self
+	manager.requestAlwaysAuthorization()
+	return manager
 }
 ```
 
 **提示：**
 
-* `[unowned self] `在这里不是必需的，没有创建循环引用。
-* `Location manager`的负作用会弹出对话框要求用户提供权限，这细粒度控制意义所在。
+* `Location manager`的负作用会弹出对话框要求用户提供权限，这就是细粒度控制意义所在。
 
 ### 类型推断
 推荐紧凑的代码，让编译器推断出每个实例的常量或变量的类型。类型推断也适用于小的非空数组和字典。必要时，指定特定类型，如`CGFloat`或`Int16`。
@@ -640,7 +640,7 @@ var names = [String]()
 
 #### 为空数组和字典键入注解
 
-对于空数组和字典，请使用类型注解。（对赋予一个大的、多行文字的数组或者字典，使用类型注解。）
+对于空数组和字典，请使用类型注解。（对赋予一个大的、多行文字的数组或者字典，使用类型注解）。
 
 **推荐**
 
@@ -657,7 +657,7 @@ var lookup = [String: Int]()
 ```
 
 **注意:**
-遵循规范意味着选择描述性名称更加重要。
+遵循规范意味着选择描述性名称比任何时候更加重要。
 
 ### 语法糖
 使用简短类型声明语法，而不是全称语法。
@@ -715,11 +715,11 @@ let value = max(x, y, z)  // 另一个自然函数
 
 ```
 resource.request().onComplete { [weak self] response in
-guard let self = self else {
-return
-}
-let model = self.updateModel(response)
-self.updateUI(model)
+	guard let self = self else {
+		return
+	}
+	let model = self.updateModel(response)
+	self.updateUI(model)
 }
 ```
 
@@ -728,8 +728,8 @@ self.updateUI(model)
 ```
 // 如果在响应返回之前释放self，则可能会崩溃
 resource.request().onComplete { [unowned self] response in
-let model = self.updateModel(response)
-self.updateUI(model)
+	let model = self.updateModel(response)
+	self.updateUI(model)
 }
 ```
 
@@ -738,24 +738,24 @@ self.updateUI(model)
 ```
 // 在更新模型和更新UI之间可能会发生deallocate
 resource.request().onComplete { [weak self] response in
-let model = self?.updateModel(response)
-self?.updateUI(model)
+	let model = self?.updateModel(response)
+	self?.updateUI(model)
 }
 ```
 
 ## 访问控制
 
-教程中的完全访问控制注释会分散主题，并不是必需的。适当地使用`private`和`fileprivate`会增加清晰度并提升封装，`private`优于`fileprivate`，除非在编译需要的时候才使用`fileprivate`。
+使用`private`和`fileprivate`会增加清晰度并提升封装，`private`优于`fileprivate`，除非在编译需要的时候才使用`fileprivate`。
 
-只有在完全需要访问控制规范时才显式使用`open`，`public`和`internal`。
-访问控制符一般放在属性修饰符的最前面， 例外`static`修饰符 ,`@IBAction`, `@IBOutlet`和`@discardableResult`。
+只有完全访问控制时才显式使用`open`，`public`和`internal`。
+访问控制符一般放在属性修饰符的最前面， 例外`static`修饰符 ,`@IBAction`, `@IBOutlet`和`@discardableResult`等属性。
 
 **推荐**
 
 ```
 private let message = "Great Scott!"
 class TimeMachine {  
-private dynamic lazy var fluxCapacitor = FluxCapacitor()
+	private dynamic lazy var fluxCapacitor = FluxCapacitor()
 }
 ```
 
@@ -764,30 +764,30 @@ private dynamic lazy var fluxCapacitor = FluxCapacitor()
 ```
 fileprivate let message = "Great Scott!"
 class TimeMachine {  
-lazy dynamic private var fluxCapacitor = FluxCapacitor()
+	lazy dynamic private var fluxCapacitor = FluxCapacitor()
 }
 ```
 
 ## 控制流
-循环for-in优于while
+循环`for-in`优于`while`。
 
 **推荐**
 
 ```
 for _ in 0..<3 {
-print("Hello three times")
+	print("Hello three times")
 }
 
 for (index, person) in attendeeList.enumerated() {
-print("\(person) is at position #\(index)")
+	print("\(person) is at position #\(index)")
 }
 
 for index in stride(from: 0, to: items.count, by: 2) {
-print(index)
+	print(index)
 }
 
 for index in (0...3).reversed() {
-print(index)
+	print(index)
 }
 ```
 
@@ -796,21 +796,21 @@ print(index)
 ```
 var i = 0
 while i < 3 {
-print("Hello three times")
-i += 1
+	print("Hello three times")
+	i += 1
 }
 
 
 var i = 0
 while i < attendeeList.count {
-let person = attendeeList[i]
-print("\(person) is at position #\(i)")
-i += 1
+	let person = attendeeList[i]
+	print("\(person) is at position #\(i)")
+	i += 1
 }
 ```
 
 ### 三元操作符
-三元操作符使用场景仅在于使代码更清楚和整洁。单个判断条件的时候可以考虑使用三元操作符，多个判断条件的时候，使用if会使代码更加具有可读性，或者将中间结果使用变量存储代替。一般而言，三元操作符最好的使用场景是给一个变量赋值或者选择哪一个值应该被使用。
+三元操作符`?:`在于使代码更清楚和整洁，单个判断条件的时候可以考虑使用三元操作符，多个判断条件的时候，使用if会使代码更加具有可读性，或者将中间结果使用变量存储代替。一般而言，三元操作符最好的使用场景是给一个变量赋值或者选择哪一个值应该被使用。
 
 **推荐**
 
@@ -829,21 +829,21 @@ result = a > b ? x = c > d ? c : d : y
 ```
 
 ## 黄金路径
-当编写带有条件才执行的代码的时候，左边的距离是黄金路径，换句话说，不要写很多if嵌套语句，多个return是可以的，guard就为此而生的。
+当编写带有条件语句时，左边的距离是黄金路径，换句话说，不要写很多if嵌套语句，应该多个return，guard就为此而生的。
 
 **推荐**
 
 ```
 func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies {
-guard let context = context else {
-throw FFTError.noContext
-}
-guard let inputData = inputData else {
-throw FFTError.noInputData
-}
+	guard let context = context else {
+		throw FFTError.noContext
+	}
+	guard let inputData = inputData else {
+		throw FFTError.noInputData
+	}
 
-// use context and input to compute the frequencies
-return frequencies
+	// use context and input to compute the frequencies
+	return frequencies
 }
 ```
 
@@ -852,60 +852,59 @@ return frequencies
 ```
 func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies {
 
-if let context = context {
-if let inputData = inputData {
-// use context and input to compute the frequencies
-
-return frequencies
-} else {
-throw FFTError.noInputData
-}
-} else {
-throw FFTError.noContext
-}
+	if let context = context {
+		if let inputData = inputData {
+			// use context and input to compute the frequencies
+			return frequencies
+		} else {
+			throw FFTError.noInputData
+		}
+	} else {
+		throw FFTError.noContext
+	}
 }
 ```
 
-当有多个条件需要用'guard'或'if let'解包，可用复合语句避免嵌套, 如下：
+当有多个条件需要用`guard`或`if let`解包，可用复合语句避免嵌套, 如下：
 
 **推荐**
 
 ```
 guard 
-let number1 = number1,
-let number2 = number2,
-let number3 = number3 
-else {
-fatalError("impossible")
-}
-// do something with numbers
+	let number1 = number1,
+	let number2 = number2,
+	let number3 = number3 
+	else {
+		fatalError("impossible")
+	}
+	// do something with numbers
 ```
 
 **不推荐**
 
 ```
 if let number1 = number1 {
-if let number2 = number2 {
-if let number3 = number3 {
-// do something with numbers
+	if let number2 = number2 {
+		if let number3 = number3 {
+			// do something with numbers
+		} else {
+			fatalError("impossible")
+		}
+	} else {
+		fatalError("impossible")
+	}
 } else {
-fatalError("impossible")
-}
-} else {
-fatalError("impossible")
-}
-} else {
-fatalError("impossible")
+	fatalError("impossible")
 }
 ```
 
 ### Guard失败
 
-guard用于退出场景，如return, throw, break, continue, 和fatalError（）等，避免出现大的代码块， 如果多个退出点有同样的清理代码，使用defer。
+guard用于退出场景，如return, throw, break, continue, 和fatalError（）等，避免出现大的代码块， 如果存在多个退出点有清理代码，使用`defer`块。
 
 ## 分号
 
-Swift不强制每条语句后面有分号，只在一行有多个语句的时候需要，不过不推荐
+Swift不强制每条语句后面有分号，只在一行有多个语句的时候需要，不过不推荐。
 
 **推荐**
 
@@ -918,7 +917,7 @@ let swift = "not a scripting language"
 ```
 let swift = "not a scripting language";
 ```
-**注意：**swift与js是非常不一样的，js删掉分号一般认为是不太安全的
+**注意：**swift与js是非常不一样的，js删掉分号一般认为是不太安全的。
 
 ## 圆括号
 条件判断时圆括号不是必须的，建议省略。
@@ -927,7 +926,7 @@ let swift = "not a scripting language";
 
 ```
 if name == "Hello" {
-print("World")
+	print("World")
 }
 ```
 
@@ -935,10 +934,10 @@ print("World")
 
 ```
 if (name == "Hello") {
-print("World")
+	print("World")
 }
 ```
-不过，当有很多表达式，圆括号可以使得代码读起来更加清晰, 如下：
+不过，当多表达式，圆括号可以使得代码读起来更清晰, 如下：
 
 ```
 let playerMark = (player == current ? "X" : "O")
@@ -946,7 +945,7 @@ let playerMark = (player == current ? "X" : "O")
 
 ## 多行字符串常量
 
-当编译一个很长的字符串时，更多的应该使用多行字符串常量，开始处不包含文本，后续文本保持同样缩进。
+当编写长的字符串字面量，应该使用多行字符串字面量，开始处不包含文本，后续文本保持同样缩进。
 
 **推荐**
 
@@ -1009,7 +1008,8 @@ let message = "You cannot charge the flux " +
 ## 引用
 
 * [API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
-* [swift style guide](https://github.com/raywenderlich/swift-style-guide)
+* [Swift Style Guide](https://github.com/raywenderlich/swift-style-guide)
+* [The Swift Programming Language 中文版](http://special.csdncms.csdn.net/the-swift-programming-language-in-chinese/index.shtml)
 
 
 
