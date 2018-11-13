@@ -304,31 +304,31 @@ class Circle: Shape {
         return radius * 2
       }
       set {
-	    radius = newValue / 2
-	  }
+        radius = newValue / 2
+      }
   }
 
   init(x: Int, y: Int, radius: Double) {
-	  self.x = x
-	  self.y = y
-	  self.radius = radius
+    self.x = x
+    self.y = y
+    self.radius = radius
   }
 
   convenience init(x: Int, y: Int, diameter: Double) {
-	  self.init(x: x, y: y, radius: diameter / 2)
+    self.init(x: x, y: y, radius: diameter / 2)
   }
 
   override func area() -> Double {
-	  return Double.pi * radius * radius
+    return Double.pi * radius * radius
   }
 }
 
 extension Circle: CustomStringConvertible {
   var description: String {
-	  return "center = \(centerString) area = \(area())"
+    return "center = \(centerString) area = \(area())"
   }
   private var centerString: String {
-	  return "(\(x),\(y))"
+    return "(\(x),\(y))"
   }
 }
 ```
@@ -362,7 +362,7 @@ var diameter: Double {
 ```
 var diameter: Double {
   get {
-	  return radius * 2
+    return radius * 2
   }
 }
 
@@ -376,7 +376,7 @@ var diameter: Double {
 final class Box<T> {
   let value: T
   init(_ value: T) {
-	  self.value = value
+    self.value = value
   }
 }
 ```
@@ -398,7 +398,7 @@ func reticulateSplines(
   adjustmentFactor: Double,
   translateConstant: Int, comment: String
   ) -> Bool {
-	  // reticulate code goes here
+    // reticulate code goes here
   }
 ```
 
@@ -586,7 +586,7 @@ var volume: Double?
 
 if let unwrappedSubview = optionalSubview {
   if let realVolume = volume {
-	  // do something with unwrappedSubview and realVolume
+    // do something with unwrappedSubview and realVolume
   }
 }
 
@@ -716,7 +716,7 @@ let value = max(x, y, z)  // 另一个自然函数
 ```
 resource.request().onComplete { [weak self] response in
   guard let self = self else {
-	  return
+    return
   }
   let model = self.updateModel(response)
   self.updateUI(model)
@@ -836,10 +836,10 @@ result = a > b ? x = c > d ? c : d : y
 ```
 func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies {
   guard let context = context else {
-	  throw FFTError.noContext
+    throw FFTError.noContext
   }
   guard let inputData = inputData else {
-	  throw FFTError.noInputData
+    throw FFTError.noInputData
   }
 
   // use context and input to compute the frequencies
@@ -854,12 +854,12 @@ func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies 
   if let context = context {
     if let inputData = inputData {
       // use context and input to compute the frequencies
-	   return frequencies
+      return frequencies
 	  } else {
-		  throw FFTError.noInputData
+	    throw FFTError.noInputData
 	  }
   } else {
-	  throw FFTError.noContext
+    throw FFTError.noContext
   }
 }
 ```
@@ -874,7 +874,7 @@ guard
   let number2 = number2,
   let number3 = number3 
   else {
-	  fatalError("impossible")
+    fatalError("impossible")
   }
   // do something with numbers
 ```
@@ -884,13 +884,13 @@ guard
 ```
 if let number1 = number1 {
   if let number2 = number2 {
-	  if let number3 = number3 {
-		  // do something with numbers
-	  } else {
-		  fatalError("impossible")
-	  }
+    if let number3 = number3 {
+      // do something with numbers
+      } else {
+        fatalError("impossible")
+      }
   } else {
-	  fatalError("impossible")
+    fatalError("impossible")
   }
 } else {
   fatalError("impossible")
