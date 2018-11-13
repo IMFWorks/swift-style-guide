@@ -189,7 +189,7 @@ super.didReceiveMemoryWarning()
 
 override func numberOfSections(in tableView: UITableView) -> Int {
   // #warning Incomplete implementation, return the number of sections
-	return 1
+  return 1
 }
 
 override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -263,7 +263,7 @@ else {
 
 ```
 class TestDatabase: Database {
-	var data: [String: CGFloat] = ["A": 1.2, "B": 3.2]
+  var data: [String: CGFloat] = ["A": 1.2, "B": 3.2]
 }
 ```
 
@@ -271,7 +271,7 @@ class TestDatabase: Database {
 
 ```
 class TestDatabase : Database {
-	var data :[String:CGFloat] = ["A" : 1.2, "B":3.2]
+  var data :[String:CGFloat] = ["A" : 1.2, "B":3.2]
 }
 ```
 
@@ -297,39 +297,39 @@ class TestDatabase : Database {
 
 ```
 class Circle: Shape {
-	var x: Int, y: Int
-	var radius: Double
-	var diameter: Double {
-		get {
-			return radius * 2
-		}
-		set {
-			radius = newValue / 2
-		}
-	}
+  var x: Int, y: Int
+  var radius: Double
+  var diameter: Double {
+      get {
+        return radius * 2
+      }
+      set {
+	    radius = newValue / 2
+	  }
+  }
 
-	init(x: Int, y: Int, radius: Double) {
-		self.x = x
-		self.y = y
-		self.radius = radius
-	}
+  init(x: Int, y: Int, radius: Double) {
+	  self.x = x
+	  self.y = y
+	  self.radius = radius
+  }
 
-	convenience init(x: Int, y: Int, diameter: Double) {
-		self.init(x: x, y: y, radius: diameter / 2)
-	}
+  convenience init(x: Int, y: Int, diameter: Double) {
+	  self.init(x: x, y: y, radius: diameter / 2)
+  }
 
-	override func area() -> Double {
-		return Double.pi * radius * radius
-	}
+  override func area() -> Double {
+	  return Double.pi * radius * radius
+  }
 }
 
 extension Circle: CustomStringConvertible {
-	var description: String {
-		return "center = \(centerString) area = \(area())"
-	}
-	private var centerString: String {
-		return "(\(x),\(y))"
-	}
+  var description: String {
+	  return "center = \(centerString) area = \(area())"
+  }
+  private var centerString: String {
+	  return "(\(x),\(y))"
+  }
 }
 ```
 
@@ -353,7 +353,7 @@ extension Circle: CustomStringConvertible {
 
 ```
 var diameter: Double {
-	return radius * 2
+  return radius * 2
 }
 ```
 
@@ -361,9 +361,9 @@ var diameter: Double {
 
 ```
 var diameter: Double {
-	get {
-		return radius * 2
-	}
+  get {
+	  return radius * 2
+  }
 }
 
 ```
@@ -374,10 +374,10 @@ var diameter: Double {
 ```
 // Turn any generic type into a reference type using this Box class.
 final class Box<T> {
-	let value: T
-	init(_ value: T) {
-		self.value = value
-	}
+  let value: T
+  init(_ value: T) {
+	  self.value = value
+  }
 }
 ```
 
@@ -386,7 +386,7 @@ final class Box<T> {
 
 ```
 func reticulateSplines(spline: [Double]) -> Bool {
-	// reticulate code goes here
+  // reticulate code goes here
 }
 ```
 
@@ -394,12 +394,12 @@ func reticulateSplines(spline: [Double]) -> Bool {
 
 ```
 func reticulateSplines(
-	spline: [Double], 
-	adjustmentFactor: Double,
-	translateConstant: Int, comment: String
-	) -> Bool {
-		// reticulate code goes here
-	}
+  spline: [Double], 
+  adjustmentFactor: Double,
+  translateConstant: Int, comment: String
+  ) -> Bool {
+	  // reticulate code goes here
+  }
 ```
 
 不要用`(Void)`做为input参数，用`()`即可，函数输出和闭包可以用`Void`来代替`()`。
@@ -408,7 +408,7 @@ func reticulateSplines(
 
 ```
 func updateConstraints() -> Void {
-	// magic happens here
+  // magic happens here
 }
 
 typealias CompletionHandler = (result) -> Void
@@ -417,7 +417,7 @@ typealias CompletionHandler = (result) -> Void
 
 ```
 func updateConstraints() -> () {
-	// magic happens here
+  // magic happens here
 }
 
 typealias CompletionHandler = (result) -> ()
@@ -448,13 +448,13 @@ comment: "normalize the display")
 
 ```
 UIView.animate(withDuration: 1.0) {
-	self.myView.alpha = 0
+  self.myView.alpha = 0
 }
 
 UIView.animate(withDuration: 1.0, animations: {
-	self.myView.alpha = 0
+  self.myView.alpha = 0
 }, completion: { finished in
-	self.myView.removeFromSuperview()
+  self.myView.removeFromSuperview()
 })
 ```
 
@@ -462,13 +462,13 @@ UIView.animate(withDuration: 1.0, animations: {
 
 ```
 UIView.animate(withDuration: 1.0, animations: {
-	self.myView.alpha = 0
+  self.myView.alpha = 0
 })
 
 UIView.animate(withDuration: 1.0, animations: {
-	self.myView.alpha = 0
+  self.myView.alpha = 0
 }) { f in
-	self.myView.removeFromSuperview()
+  self.myView.removeFromSuperview()
 }
 ```
 
@@ -476,7 +476,7 @@ UIView.animate(withDuration: 1.0, animations: {
 
 ```
 attendeeList.sort { a, b in
-	a > b
+  a > b
 }
 ```
 
@@ -526,8 +526,8 @@ let widthString: NSString = width.stringValue        // NSString
 
 ```
 enum Math {
-	static let e = 2.718281828459045235360287
-	static let root2 = 1.41421356237309504880168872
+  static let e = 2.718281828459045235360287
+  static let root2 = 1.41421356237309504880168872
 }
 
 let hypotenuse = side * Math.root2
@@ -568,13 +568,13 @@ var volume: Double?
 
 // later on...
 if let subview = subview, let volume = volume {
-	// do something with unwrapped subview and volume
+  // do something with unwrapped subview and volume
 }
 
 // another example
 UIView.animate(withDuration: 2.0) { [weak self] in
-	guard let self = self else { return }
-	self.alpha = 1.0
+  guard let self = self else { return }
+  self.alpha = 1.0
 }
 ```
 
@@ -585,15 +585,15 @@ var optionalSubview: UIView?
 var volume: Double?
 
 if let unwrappedSubview = optionalSubview {
-	if let realVolume = volume {
-		// do something with unwrappedSubview and realVolume
-	}
+  if let realVolume = volume {
+	  // do something with unwrappedSubview and realVolume
+  }
 }
 
 // another example
 UIView.animate(withDuration: 2.0) { [weak self] in
-	guard let self = self else { return }
-	self.alpha = 1.0
+  guard let self = self else { return }
+  self.alpha = 1.0
 }
 ```
 
@@ -605,12 +605,12 @@ UIView.animate(withDuration: 2.0) { [weak self] in
 lazy var locationManager = makeLocationManager()
 
 lazy var locationManager = makeLocationManager()
-	private func makeLocationManager() -> CLLocationManager {
-	let manager = CLLocationManager()
-	manager.desiredAccuracy = kCLLocationAccuracyBest
-	manager.delegate = self
-	manager.requestAlwaysAuthorization()
-	return manager
+  private func makeLocationManager() -> CLLocationManager {
+  let manager = CLLocationManager()
+  manager.desiredAccuracy = kCLLocationAccuracyBest
+  manager.delegate = self
+  manager.requestAlwaysAuthorization()
+  return manager
 }
 ```
 
@@ -715,11 +715,11 @@ let value = max(x, y, z)  // 另一个自然函数
 
 ```
 resource.request().onComplete { [weak self] response in
-	guard let self = self else {
-		return
-	}
-	let model = self.updateModel(response)
-	self.updateUI(model)
+  guard let self = self else {
+	  return
+  }
+  let model = self.updateModel(response)
+  self.updateUI(model)
 }
 ```
 
@@ -728,8 +728,8 @@ resource.request().onComplete { [weak self] response in
 ```
 // 如果在响应返回之前释放self，则可能会崩溃
 resource.request().onComplete { [unowned self] response in
-	let model = self.updateModel(response)
-	self.updateUI(model)
+  let model = self.updateModel(response)
+  self.updateUI(model)
 }
 ```
 
@@ -738,8 +738,8 @@ resource.request().onComplete { [unowned self] response in
 ```
 // 在更新模型和更新UI之间可能会发生deallocate
 resource.request().onComplete { [weak self] response in
-	let model = self?.updateModel(response)
-	self?.updateUI(model)
+  let model = self?.updateModel(response)
+  self?.updateUI(model)
 }
 ```
 
@@ -755,7 +755,7 @@ resource.request().onComplete { [weak self] response in
 ```
 private let message = "Great Scott!"
 class TimeMachine {  
-	private dynamic lazy var fluxCapacitor = FluxCapacitor()
+  private dynamic lazy var fluxCapacitor = FluxCapacitor()
 }
 ```
 
@@ -764,7 +764,7 @@ class TimeMachine {
 ```
 fileprivate let message = "Great Scott!"
 class TimeMachine {  
-	lazy dynamic private var fluxCapacitor = FluxCapacitor()
+  lazy dynamic private var fluxCapacitor = FluxCapacitor()
 }
 ```
 
@@ -775,19 +775,19 @@ class TimeMachine {
 
 ```
 for _ in 0..<3 {
-	print("Hello three times")
+  print("Hello three times")
 }
 
 for (index, person) in attendeeList.enumerated() {
-	print("\(person) is at position #\(index)")
+  print("\(person) is at position #\(index)")
 }
 
 for index in stride(from: 0, to: items.count, by: 2) {
-	print(index)
+  print(index)
 }
 
 for index in (0...3).reversed() {
-	print(index)
+  print(index)
 }
 ```
 
@@ -796,16 +796,16 @@ for index in (0...3).reversed() {
 ```
 var i = 0
 while i < 3 {
-	print("Hello three times")
-	i += 1
+  print("Hello three times")
+  i += 1
 }
 
 
 var i = 0
 while i < attendeeList.count {
-	let person = attendeeList[i]
-	print("\(person) is at position #\(i)")
-	i += 1
+  let person = attendeeList[i]
+  print("\(person) is at position #\(i)")
+  i += 1
 }
 ```
 
@@ -835,15 +835,15 @@ result = a > b ? x = c > d ? c : d : y
 
 ```
 func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies {
-	guard let context = context else {
-		throw FFTError.noContext
-	}
-	guard let inputData = inputData else {
-		throw FFTError.noInputData
-	}
+  guard let context = context else {
+	  throw FFTError.noContext
+  }
+  guard let inputData = inputData else {
+	  throw FFTError.noInputData
+  }
 
-	// use context and input to compute the frequencies
-	return frequencies
+  // use context and input to compute the frequencies
+  return frequencies
 }
 ```
 
@@ -851,17 +851,16 @@ func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies 
 
 ```
 func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies {
-
-	if let context = context {
-		if let inputData = inputData {
-			// use context and input to compute the frequencies
-			return frequencies
-		} else {
-			throw FFTError.noInputData
-		}
-	} else {
-		throw FFTError.noContext
-	}
+  if let context = context {
+    if let inputData = inputData {
+      // use context and input to compute the frequencies
+	   return frequencies
+	  } else {
+		  throw FFTError.noInputData
+	  }
+  } else {
+	  throw FFTError.noContext
+  }
 }
 ```
 
@@ -871,30 +870,30 @@ func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies 
 
 ```
 guard 
-	let number1 = number1,
-	let number2 = number2,
-	let number3 = number3 
-	else {
-		fatalError("impossible")
-	}
-	// do something with numbers
+  let number1 = number1,
+  let number2 = number2,
+  let number3 = number3 
+  else {
+	  fatalError("impossible")
+  }
+  // do something with numbers
 ```
 
 **不推荐**
 
 ```
 if let number1 = number1 {
-	if let number2 = number2 {
-		if let number3 = number3 {
-			// do something with numbers
-		} else {
-			fatalError("impossible")
-		}
-	} else {
-		fatalError("impossible")
-	}
+  if let number2 = number2 {
+	  if let number3 = number3 {
+		  // do something with numbers
+	  } else {
+		  fatalError("impossible")
+	  }
+  } else {
+	  fatalError("impossible")
+  }
 } else {
-	fatalError("impossible")
+  fatalError("impossible")
 }
 ```
 
@@ -926,7 +925,7 @@ let swift = "not a scripting language";
 
 ```
 if name == "Hello" {
-	print("World")
+  print("World")
 }
 ```
 
@@ -934,7 +933,7 @@ if name == "Hello" {
 
 ```
 if (name == "Hello") {
-	print("World")
+  print("World")
 }
 ```
 不过，当多表达式，圆括号可以使得代码读起来更清晰, 如下：
