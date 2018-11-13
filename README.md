@@ -14,7 +14,7 @@
 * 对于类型（包括协议）首字母大写，其他小写
 * 包含必要单词省略不需要的单词
 * 利用变量、参数和关联类型的角色命名，而非类型
-* 为弱类型（any, anyObject和NSObject）添加信息，使其表达更加明确
+* 为弱类型（Any, AnyObject和NSObject）添加信息，使其表达更加明确
 * 力求流畅
 * 工厂的方法开头用make
 * 根据方法具体行为为其命名
@@ -142,17 +142,17 @@ let colour = "red"
 
 ```
 class MyViewController: UIViewController {
-	// class stuff here
+  // class stuff here
 }
 
 // MARK: - UITableViewDataSource
 extension MyViewController: UITableViewDataSource {
-	// table view data source methods
+  // table view data source methods
 }
 
 // MARK: - UIScrollViewDelegate
 extension MyViewController: UIScrollViewDelegate {
-	// scroll view delegate methods
+  // scroll view delegate methods
 }
 ```
 
@@ -160,7 +160,7 @@ extension MyViewController: UIScrollViewDelegate {
 
 ```
 class MyViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate {
-	// all methods
+  // all methods
 }
 ```
 
@@ -175,7 +175,7 @@ class MyViewController: UIViewController, UITableViewDataSource, UIScrollViewDel
 
 ```
 override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-	return Database.contacts.count
+  return Database.contacts.count
 }
 ```
 
@@ -184,17 +184,17 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
 ```
 override func didReceiveMemoryWarning() {
 super.didReceiveMemoryWarning()
-	// Dispose of any resources that can be recreated.
+  // Dispose of any resources that can be recreated.
 }
 
 override func numberOfSections(in tableView: UITableView) -> Int {
-	// #warning Incomplete implementation, return the number of sections
+  // #warning Incomplete implementation, return the number of sections
 	return 1
 }
 
 override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-	// #warning Incomplete implementation, return the number of rows
-	return Database.contacts.count
+  // #warning Incomplete implementation, return the number of rows
+  return Database.contacts.count
 }
 ```
 
@@ -236,9 +236,9 @@ var deviceModels: [String]
 
 ```
 if user.isHappy {
-	// Do something
+  // Do something
 } else {
-	// Do something else
+  // Do something else
 }
 ```
 
@@ -247,10 +247,10 @@ if user.isHappy {
 ```
 if user.isHappy
 {
-	// Do something
+  // Do something
 }
 else {
-	// Do something else
+  // Do something else
 }
 ```
 
