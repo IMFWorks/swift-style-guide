@@ -1055,6 +1055,7 @@ let message = "You cannot charge the flux " +
 * [API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
 * [Swift Style Guide](https://github.com/raywenderlich/swift-style-guide)
 * [The Swift Programming Language 中文版](http://special.csdncms.csdn.net/the-swift-programming-language-in-chinese/index.shtml)
+* [Google Swift Style](https://google.github.io/swift/)
 
 
 
